@@ -1,0 +1,46 @@
+---
+title: Winston Puckett
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Illuminating CLI testing.">
+    <meta name="keywords" content="lucifer, cli, testing">
+    <meta name="date" content="10/01/2022">
+    <meta name="author" content="Winston Puckett">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦦</text></svg>"">
+
+    <title>{{ title }}</title>
+</head>
+<body>
+    {% set siteCss %}{% include 'site.css' %}{% endset %}
+    <style>{{ siteCss | cssmin | safe }}</style>
+
+    <header>
+        <!--TODO: SVG Icon top left-->
+        <!--TODO: menu-->
+        <!--TODO: current page-->
+    </header>
+
+    <nav id="nav">
+        <!--TODO: File explorer-->
+        <!--TODO: Projects-->
+        <!--TODO: Projects-->
+    </nav>
+
+    <main>
+        {{ content | safe }}
+    </main>
+
+    <footer>
+        <span>From Winston Puckett with love ♥️</span> |
+        <a href="https://github.com/winstonpucket/winstonpuckett-site/LICENSE">License</a> |
+        <a href="https://github.com/winstonpucket/winstonpuckett-site">Source Code</a> 
+    </footer>
+
+    </body>
+</html>
+
