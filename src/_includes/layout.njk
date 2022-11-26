@@ -11,7 +11,7 @@ title: Winston Puckett
     <meta name="keywords" content="lucifer, cli, testing">
     <meta name="date" content="10/01/2022">
     <meta name="author" content="Winston Puckett">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦦</text></svg>"">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦦</text></svg>">
 
     <title>{{ title }}</title>
 </head>
@@ -19,23 +19,31 @@ title: Winston Puckett
     {% set siteCss %}{% include 'site.css' %}{% endset %}
     <style>{{ siteCss | cssmin | safe }}</style>
 
-    <header>
+    <header style="background:red;">
+        heading
         <!--TODO: SVG Icon top left-->
         <!--TODO: menu-->
         <!--TODO: current page-->
     </header>
 
-    <nav id="nav">
+    <nav id="nav" style="background:green;">
+        <a href="#blog">blog</a>
+        <a href="#blog">blog</a>
+        <a href="#blog">blog</a>
+        <details>
+            <summary>projects</summary>
+            <a href="#probability-calculator">probability-calculator</a>
+            <a href="#probability-calculator">lucifer</a>
+        </details>
         <!--TODO: File explorer-->
-        <!--TODO: Projects-->
         <!--TODO: Projects-->
     </nav>
 
-    <main>
+    <main style="background:blue;">
         {{ content | safe }}
     </main>
 
-    <footer>
+    <footer style="background:orange;">
         <span>From Winston Puckett with love ♥️</span> |
         <a href="https://github.com/winstonpucket/winstonpuckett-site/LICENSE">License</a> |
         <a href="https://github.com/winstonpucket/winstonpuckett-site">Source Code</a> 

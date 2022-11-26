@@ -4,23 +4,20 @@
     "description": "Everything WinstonPuckett",
     "main": "index.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/winstonpuckett/winstonpuckett-site.git"
+        "type": "git",
+        "url": "git+https://github.com/winstonpuckett/winstonpuckett-site.git"
     },
     "author": "Winston Puckett",
     "license": "Apache-2.0",
     "bugs": {
-      "url": "https://github.com/winstonpuckett/winstonpuckett-site/issues"
+        "url": "https://github.com/winstonpuckett/winstonpuckett-site/issues"
     },
     "homepage": "https://github.com/winstonpuckett/winstonpuckett-site#readme",
     "dependencies": {
-      "@11ty/eleventy": "^1.0.2",
-      "html-minifier": "^4.0.0"
-    },
-    "devDependencies": {
-      "@11ty/eleventy-navigation": "^0.3.5"
+        "@11ty/eleventy": "^1.0.2",
+        "html-minifier": "^4.0.0"
     }
-  }
+}
