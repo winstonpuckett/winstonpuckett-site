@@ -1,0 +1,21 @@
+---
+layout: layout.njk
+---
+
+<p>I make cool stuff and give it away for free.</p>
+
+<h1>Products</h1>
+
+{% import "productCards.njk" as productCards %}
+
+{{ productCards.productCards(collections.product) }}
+
+<h1>Blog</h1>
+
+Sometimes I write about what I've learned.
+
+<h1>Music</h1>
+
+I've been making music almost longer than I've been programming.
+
+<a href="https://neoplumes.com">Neoplumes</a>

@@ -1,56 +1,34 @@
----
-title: Winston Puckett
----
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Illuminating CLI testing.">
-    <meta name="keywords" content="lucifer, cli, testing">
-    <meta name="date" content="10/01/2022">
+    <meta name="description" content="Better code is more better.">
+    <meta name="keywords" content="winston puckett, programming, computer science, open source">
+    <meta name="date" content="12/04/2022">
     <meta name="author" content="Winston Puckett">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><circle r=%22100%22 cx=%22100%22 cy=%22100%22></circle><text font-size=%22160%22 y=%221em%22 x=%22-0.05em%22>🪐</text></svg>">
-
-    <title>{{ title }}</title>
+    <title>Winston Puckett</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><text font-size=%22160%22 y=%221em%22 x=%22-0.05em%22>🦉</text></svg>">
 </head>
+
 <body>
     {% set siteCss %}{% include 'site.css' %}{% endset %}
     <style>{{ siteCss | cssmin | safe }}</style>
 
-    <header style="background:red;">
-        heading
-        <!--TODO: SVG Icon top left-->
-        <!--TODO: menu-->
-        <!--TODO: current page-->
-        {# <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle r="100" cx="100" cy="100"></circle><text font-size="160" y="1em" x="-0.05em">🪐</text></svg> #}
-        
-    </header>
-
-    <nav id="nav" style="background:green;">
-        <a href="#blog">blog</a>
-        <a href="#blog">blog</a>
-        <a href="#blog">blog</a>
-        <details>
-            <summary>projects</summary>
-            <a href="#probability-calculator">probability-calculator</a>
-            <a href="#probability-calculator">lucifer</a>
-        </details>
-        <!--TODO: File explorer-->
-        <!--TODO: Projects-->
+    <nav id="nav">
+        <a class="nav__title" href="/">🦉 Winston Puckett</a>
     </nav>
 
-    <main style="background:blue;">
+    <main>
         {{ content | safe }}
     </main>
-
-    <footer style="background:orange;">
+    <footer>
         <span>From Winston Puckett with love ♥️</span> |
-        <a href="https://github.com/winstonpucket/winstonpuckett-site/LICENSE">License</a> |
-        <a href="https://github.com/winstonpucket/winstonpuckett-site">Source Code</a> 
+        <a href="https://github.com/winstonpuckett/winstonpuckett-site/blob/main/LICENSE">License</a> |
+        <a href="https://github.com/winstonpuckett/winstonpuckett-site">Source Code</a> 
     </footer>
+</body>
 
-    </body>
 </html>
-

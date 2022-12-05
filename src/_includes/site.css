@@ -1,39 +1,115 @@
+:root {
+    --c-text: #edebeb;
+    --c-textSeparator: #a8b2c0;
+    --c-background: #0d0707;
+    --c-background-gradient: linear-gradient(to bottom, #0d0707, #090505);
+    --c-backgroundseparator: #1e1819;
+    --c-cta1: #ead0a9;
+    --c-cta2: #a8852c;
+    --c-cta3: #795615;
+}
+
+html {
+    height: 100%;
+}
 body {
-    display: grid;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
-    grid-template-areas: 
-        "heading heading"
-        "nav main"
-        "nav main"
-        "footer footer";
-    grid-template-rows: min-content 1fr min-content;
-    grid-template-columns: min-content auto;
-}
+    background-color: var(--c-background);
+    background-image: var(--c-background-gradient);
+    color: var(--c-text);
+    font-family: monospace;
+    min-height: 100%;
 
-header {
-    grid-area: heading;
-    height: 3em;
-}
-
-nav {
-    grid-area: nav;
-    width: 19em;
-    padding: 1em;
     display: flex;
     flex-direction: column;
 }
 
-details {
-    display: block;
+nav {
+    padding: 15px;
 }
 
 main {
-    grid-area: main;
+    margin-bottom: auto;
 }
 
 footer {
-    grid-area: footer;
-    height: 3em;
+    padding: 15px;
+}
+
+a {
+    color: var(--c-text);
+    text-decoration: none;
+}
+
+.nav__title {
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.products-list__wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card__wrapper {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content auto;
+    grid-template-areas:
+        "icon title"
+        "description description"
+        "tags tags";
+
+    width: 300px;
+
+    border: 1px solid var(--c-backgroundseparator);
+    border-radius: 20px;
+    padding: 15px;
+
+    color: var(--c-text);
+    text-decoration: none;
+}
+
+.card__icon {
+    grid-area: icon;
+    margin: 0;
+    height: 1.5em;
+    width: 1.5em;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card__title {
+    grid-area: title;
+    margin: 0;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    font-size: x-large;
+}
+
+.card__description {
+    grid-area: description;
+}
+
+.card__tags__wrapper {
+    grid-area: tags;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.card__tags__chip {
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 10px;
+    height: fit-content;
+    background: var(--c-backgroundseparator);
 }
