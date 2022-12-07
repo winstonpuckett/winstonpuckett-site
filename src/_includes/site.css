@@ -27,10 +27,15 @@ body {
 
 nav {
     padding: 15px;
+    display: flex;
+    gap: 15px;
 }
 
 main {
-    margin-bottom: auto;
+    margin: auto;
+    margin-top: 0;
+    padding: 15px;
+    max-width: 1200px;
 }
 
 footer {
@@ -39,12 +44,13 @@ footer {
 
 a {
     color: var(--c-text);
-    text-decoration: none;
 }
 
 .nav__title {
     font-size: xx-large;
-    font-weight: bolder;
+    font-weight: bolder;    
+    color: var(--c-text);
+    text-decoration: none;
 }
 
 .products-list__wrapper {

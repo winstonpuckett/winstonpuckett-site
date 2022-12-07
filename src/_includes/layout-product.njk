@@ -27,7 +27,7 @@
     <style>{{ siteCss | cssmin | safe }}</style>
 
     <nav id="nav">
-        <a class="nav__title" href="/">🦉 Winston Puckett</a>
+        <a class="nav__title" href="/">🦉</a><span class=nav__title>></span><a class="nav__title" href="{{ productUrl or page.url }}">{{ icon | safe }}</a>
     </nav>
 
     <main>
