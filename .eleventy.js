@@ -108,6 +108,8 @@ module.exports = function (eleventyConfig) {
       return html;
     }
   })
+
+  eleventyConfig.addPassthroughCopy("src/_assets");
   // #endregion blogPosts
 
   return {

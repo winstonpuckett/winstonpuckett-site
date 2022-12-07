@@ -7,6 +7,8 @@
     --c-cta1: #ead0a9;
     --c-cta2: #a8852c;
     --c-cta3: #795615;
+
+    --c-cta: linear-gradient(to bottom right, var(--c-cta1), var(--c-cta2), var(--c-cta3))
 }
 
 html {
