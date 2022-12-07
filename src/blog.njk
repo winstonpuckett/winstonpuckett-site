@@ -27,8 +27,8 @@ layout: layout.njk
 
 {% if currentPostTag == postTag%}
 <div class="card" data-post-tags='{{ post.tag_list | toJsonArrayString }}' data-post-title='{{ post.title | removeQuotes }}''>
-    <a href="/posts/{{ post.title | removeNonAlphanumericCharacters | slug }}" ><image class="card__image" loading="lazy" src="{{ post.cover_image }}" alt="image for blog post: {{ post.title | removeQuotes }}"></a>
-    <a class="card__title" href="/posts/{{ post.title | removeNonAlphanumericCharacters | slug }}">{{ post.title }}</a>
+    <a href="/blog/{{ post.title | removeNonAlphanumericCharacters | slug }}" ><image class="card__image" loading="lazy" src="{{ post.cover_image }}" alt="image for blog post: {{ post.title | removeQuotes }}"></a>
+    <a class="card__title" href="/blog/{{ post.title | removeNonAlphanumericCharacters | slug }}">{{ post.title }}</a>
     <p class="card__description">{{ post.description }}</p>
     <p class="card__date">{{ post.published_at | formatDate }}</p>
 </div>
@@ -38,8 +38,8 @@ layout: layout.njk
 {% endif %}
 {% else %}
 <div class="card" data-post-tags='{{ post.tag_list | toJsonArrayString }}' data-post-title='{{ post.title | removeQuotes }}'>
-    <a href="/posts/{{ post.title | removeNonAlphanumericCharacters | slug }}" ><image class="card__image" loading="lazy" src="{{ post.cover_image }}" alt="image for blog post: {{ post.title | removeQuotes }}"></a>
-    <a class="card__title" href="/posts/{{ post.title | removeNonAlphanumericCharacters | slug }}">{{ post.title }}</a>
+    <a href="/blog/{{ post.title | removeNonAlphanumericCharacters | slug }}" ><image class="card__image" loading="lazy" src="{{ post.cover_image }}" alt="image for blog post: {{ post.title | removeQuotes }}"></a>
+    <a class="card__title" href="/blog/{{ post.title | removeNonAlphanumericCharacters | slug }}">{{ post.title }}</a>
     <p class="card__description">{{ post.description }}</p>
     <p class="card__date">{{ post.published_at | formatDate }}</p>
 </div>
