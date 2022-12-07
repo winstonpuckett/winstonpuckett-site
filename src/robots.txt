@@ -1,0 +1,9 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+
+Sitemap: https://winstonpuckett.com/sitemap.xml
+
+User-agent: *
+Disallow:
