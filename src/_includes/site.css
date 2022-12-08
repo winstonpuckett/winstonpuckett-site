@@ -4,10 +4,10 @@
     --c-background: #0d0707;
     --c-background-gradient: linear-gradient(to bottom, #0d0707, #090505);
     --c-backgroundseparator: #1e1819;
-    --c-cta1: #ead0a9;
+    /* --c-cta1: #ead0a9;
     --c-cta2: #a8852c;
     --c-cta3: #795615;
-    --c-cta: linear-gradient(to bottom right, var(--c-cta1), var(--c-cta2), var(--c-cta3));
+    --c-cta: linear-gradient(to bottom right, var(--c-cta1), var(--c-cta2), var(--c-cta3)); */
     --s-spacing: 15px;
     --s-text-xsmall: 0.75rem;
     --s-text-small: 1rem;

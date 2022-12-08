@@ -13,10 +13,10 @@ productTags:
 layout: layout-product.njk
 --- 
 
-[Getting Started](/products/lucifer/docs)
-[Installation](/products/lucifer/installation)
-[CLI Reference](/products/lucifer/cli)
-[Test Syntax](/products/lucifer/tests)
+- [Getting Started](/products/lucifer/docs)
+- [Installation](/products/lucifer/installation)
+- [CLI Reference](/products/lucifer/cli)
+- [Test Syntax](/products/lucifer/tests)
 
 # lucifer
 

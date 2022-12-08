@@ -37,7 +37,6 @@ templateEngineOverride: njk, md
 
 {% set postCss %}{% include 'post.css' %}{% endset %}
 <style>{{ postCss | cssmin | safe }}</style>
-{# {{ sections.header(devProfile) }} #}
 
 <nav id="nav">
     <a class="nav__title" href="/">🦉</a><span class=nav__title>></span><a class="nav__title" href="/blog">✒️</a>
@@ -49,7 +48,7 @@ templateEngineOverride: njk, md
 
 {{ post.body_markdown | removeMdMetadata | safe }}
 
-{# <a href="https://dev.to/{{ devProfile.username }}/{{ post.slug }}" rel="noreferrer"  target="_blank">Respond to this post and join the conversation on DEV</a> #}
+<a href="https://dev.to/winstonpuckett/{{ post.slug }}" rel="noreferrer"  target="_blank">Respond to this post and join the conversation on DEV</a>
 
 <hr>
 </main>

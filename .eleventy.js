@@ -110,6 +110,7 @@ module.exports = function (eleventyConfig) {
   })
 
   eleventyConfig.addPassthroughCopy("src/_assets");
+  eleventyConfig.addPassthroughCopy("src/robots.txt");
   // #endregion blogPosts
 
   return {

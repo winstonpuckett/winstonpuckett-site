@@ -5,10 +5,10 @@ layout: layout-product.njk
 productUrl: /products/lucifer
 ---
 
-[Overview](/products/lucifer)
-[Getting Started](/products/lucifer/docs)
-[Installation](/products/lucifer/installation)
-[Test Syntax](/products/lucifer/tests)
+- [Overview](/products/lucifer)
+- [Getting Started](/products/lucifer/docs)
+- [Installation](/products/lucifer/installation)
+- [Test Syntax](/products/lucifer/tests)
 
 # CLI Reference
 

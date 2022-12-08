@@ -25,8 +25,6 @@
 <body>
     {% set siteCss %}{% include 'site.css' %}{% endset %}
     <style>{{ siteCss | cssmin | safe }}</style>
-    {% set postCss %}{% include 'post.css' %}{% endset %}
-    <style>{{ postCss | cssmin | safe }}</style>
 
     <nav id="nav">
         <a class="nav__title" href="/">🦉 Winston Puckett</a>
