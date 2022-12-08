@@ -11,31 +11,18 @@ concurrency:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm i
-      #- name: 11ty/Eleventy GitHub Action
-      #  uses: hyperngn/github-actions-11ty@v0.1.1
-      - run: npx @11ty/eleventy
+      - name: install
+        run: npm i
+      - name: build
+        run: npx @11ty/eleventy
         env:
           DEV_API_KEY: ${{ secrets.DEV_API_KEY }}
           GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
           PAYMENT_POINTER: ${{ secrets.PAYMENT_POINTER }}
-#      - name: Setup Pages
-#        uses: actions/configure-pages@v2
-#      - name: Upload artifact
-#        uses: actions/upload-pages-artifact@v1
-#        with:
-#          # Upload entire repository
-#          path: '.'
-#      - name: Deploy to GitHub Pages
-#        id: deployment
-#        uses: actions/deploy-pages@v1
