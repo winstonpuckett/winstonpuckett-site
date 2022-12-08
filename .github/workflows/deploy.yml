@@ -22,8 +22,9 @@ jobs:
         with:
           node-version: 16
       - run: npm i
-      - name: 11ty/Eleventy GitHub Action
-        uses: hyperngn/github-actions-11ty@v0.1.1
+      #- name: 11ty/Eleventy GitHub Action
+      #  uses: hyperngn/github-actions-11ty@v0.1.1
+      - run: npx @11ty/eleventy
         env:
           DEV_API_KEY: ${{ secrets.DEV_API_KEY }}
           GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
