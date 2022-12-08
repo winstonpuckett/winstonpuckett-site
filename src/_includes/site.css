@@ -7,8 +7,12 @@
     --c-cta1: #ead0a9;
     --c-cta2: #a8852c;
     --c-cta3: #795615;
-
-    --c-cta: linear-gradient(to bottom right, var(--c-cta1), var(--c-cta2), var(--c-cta3))
+    --c-cta: linear-gradient(to bottom right, var(--c-cta1), var(--c-cta2), var(--c-cta3));
+    --s-spacing: 15px;
+    --s-text-xsmall: 0.75rem;
+    --s-text-small: 1rem;
+    --s-text: 1.5rem;
+    --s-text-large: 2rem;
 }
 
 html {
@@ -25,23 +29,22 @@ body {
 
     display: flex;
     flex-direction: column;
+    font-size: var(--s-text);
 }
 
 nav {
-    padding: 15px;
+    padding: var(--s-spacing);
     display: flex;
-    gap: 15px;
+    gap: var(--s-spacing);
 }
 
 main {
-    margin: auto;
-    margin-top: 0;
-    padding: 15px;
-    max-width: 900px;
+    margin-bottom: auto;
+    padding: var(--s-spacing);
 }
 
 footer {
-    padding: 15px;
+    padding: var(--s-spacing);
 }
 
 a {
@@ -49,8 +52,8 @@ a {
 }
 
 .nav__title {
-    font-size: xx-large;
-    font-weight: bolder;    
+    font-size: var(--s-text-large);
+    font-weight: bolder;
     color: var(--c-text);
     text-decoration: none;
 }
@@ -58,8 +61,8 @@ a {
 .products-list__wrapper {
     display: flex;
     flex-direction: row;
-    gap: 15px;
-    padding: 15px;
+    gap: var(--s-spacing);
+    padding: var(--s-spacing);
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -77,7 +80,7 @@ a {
 
     border: 1px solid var(--c-backgroundseparator);
     border-radius: 20px;
-    padding: 15px;
+    padding: var(--s-spacing);
 
     color: var(--c-text);
     text-decoration: none;
@@ -100,10 +103,11 @@ a {
     margin-left: 5px;
     display: flex;
     align-items: center;
-    font-size: x-large;
+    font-size: var(--s-text-large);
 }
 
 .card__description {
+    font-size: var(--s-text-small);
     grid-area: description;
 }
 
@@ -114,8 +118,13 @@ a {
     justify-content: flex-start;
 }
 
+.card__tags__title {
+    font-size: var(--s-text-small);
+}
+
 .card__tags__chip {
-    padding: 10px 15px;
+    font-size: var(--s-text-small);
+    padding: 10px var(--s-spacing);
     margin: 5px;
     border-radius: 10px;
     height: fit-content;

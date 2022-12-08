@@ -35,9 +35,15 @@ templateEngineOverride: njk, md
 {% set siteCss %}{% include 'site.css' %}{% endset %}
 <style>{{ siteCss | cssmin | safe }}</style>
 
+{% set postCss %}{% include 'post.css' %}{% endset %}
+<style>{{ postCss | cssmin | safe }}</style>
 {# {{ sections.header(devProfile) }} #}
 
-<main>
+<nav id="nav">
+    <a class="nav__title" href="/">🦉</a><span class=nav__title>></span><a class="nav__title" href="/blog">✒️</a>
+</nav>
+
+<main class="post">
 <img loading="lazy" src="{{ post.cover_image }}" alt="this post's header image">
 <h1 class="post__title">{{ post.title }}</h1>
 
