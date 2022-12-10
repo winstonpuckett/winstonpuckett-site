@@ -18,7 +18,7 @@ layout: layout-product.njk
 - [CLI Reference](/products/lucifer/cli)
 - [Test Syntax](/products/lucifer/tests)
 
-# lucifer
+# Lucifer
 
 Illuminating CLI testing.
 
