@@ -1,5 +1,6 @@
 --- 
 tags: product
+date: 2021-06-30
 
 icon: <svg width="1.25em" height="1.25em" viewBox="0 0 32 32">
         <defs>

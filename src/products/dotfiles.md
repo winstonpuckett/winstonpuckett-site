@@ -1,5 +1,6 @@
 --- 
 tags: product
+date: 2022-10-01
 
 icon: 🟢
 title: dotfiles

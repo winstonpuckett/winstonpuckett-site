@@ -1,5 +1,6 @@
 --- 
 tags: product
+date: 2022-10-02
 
 icon: 🎧
 title: Neoplumes

@@ -1,6 +1,6 @@
 {% macro productCards(products) %}
     <div class="products-list__wrapper">
-    {%- for product in products -%}
+    {%- for product in products | reverse -%}
         <a class="card__wrapper" href="{{ product.url }}">
             <p class="card__icon">{{ product.data.icon | safe }}</p>
             <p class="card__title">{{ product.data.title }}</p>

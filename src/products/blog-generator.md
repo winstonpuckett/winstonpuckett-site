@@ -1,5 +1,6 @@
 --- 
 tags: product
+date: 2020-10-01
 
 icon: 📚
 title: Blog Generator
