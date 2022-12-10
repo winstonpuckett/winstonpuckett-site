@@ -1,0 +1,212 @@
+---
+tags: product
+icon: 🎲
+date: 2022-11-01
+title: Probability
+tagline: Adding the result monad to C#.
+productTags:
+    - Web
+    - Tool
+    - HTML
+    - JS
+
+layout: layout-product.njk
+---
+
+
+<form></form>
+<table>
+    <thead>
+        <tr>
+            <th>Roll</th>
+            <th>x / y</th>
+            <th>%</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</main>
+<footer>
+
+</footer>
+<script>
+    // Query universe
+    const getRandomId = () => `${Math.random()}`.substring(2, 6);
+    const $ = {
+        get: (s) => document.querySelector(s),
+        create: (e) => document.createElement(e)
+    };
+
+    const $tbody = $.get('tbody');
+    const $form = $.get('form');
+
+    // Manage Dice
+    const appendDie = () => {
+        const $fieldSet = $.create('fieldset')
+
+        const die = createInput({ label: 'Die', cls: 'die', dft: 6, onChange: resetProbabilityTable })
+        const count = createInput({ label: 'x', cls: 'count', min: 1, dft: 3, onChange: resetProbabilityTable })
+
+        $fieldSet.appendChild(die.label)
+        $fieldSet.appendChild(die.input)
+        $fieldSet.appendChild(count.label)
+        $fieldSet.appendChild(count.input)
+
+        $form.appendChild($fieldSet);
+    }
+
+    const createInput = ({ label, cls, min, dft, onChange }) => {
+        const id = getRandomId()
+
+        const $label = $.create('label')
+        $label.innerText = label
+        $label.htmlFor = id
+
+        const $input = $.create('input')
+        $input.type = 'number'
+        $input.min = typeof (min) === 'undefined' ? 0 : min
+        $input.classList.add(cls);
+        $input.id = id
+        $input.value = dft
+        $input.onchange = onChange
+
+        return {
+            label: $label,
+            input: $input
+        }
+    }
+
+    const resetProbabilityTable = () => {
+        clearTable()
+
+        let { count, totalAndProbabilityMap } = calculate();
+        for (const e of totalAndProbabilityMap.entries()) {
+            const [key, value] = e
+
+            addProbability(count, key, value)
+        }
+    }
+
+    const addProbability = (count, total, probability) => {
+        const $row = $.create('tr')
+
+        const $roll = $.create('td')
+        $roll.innerText = total
+
+        const $xOfY = $.create('td')
+        $xOfY.innerText = `${probability}/${count}`
+
+        const $percentage = $.create('td')
+        $percentage.innerText = `${((probability / count) * 100).toPrecision(2)} %`
+
+        $row.appendChild($roll)
+        $row.appendChild($xOfY)
+        $row.appendChild($percentage)
+
+        $tbody.appendChild($row);
+    }
+
+    const clearTable = () => { $tbody.querySelectorAll('*').forEach(n => n.remove()) }
+
+    // Calculate probabilities
+    const calculate = () => {
+        console.time('Calculation time')
+        const dice = getDice()
+        const unwrappedDice = unwrapDice(dice)
+
+        const combinations = getCombinations(unwrappedDice)
+
+        const probabilityMap = combinations
+            .map(sumArray)
+            .reduce(mapCounts, new Map());
+        console.timeEnd('Calculation time')
+
+        return { count: combinations.length, totalAndProbabilityMap: probabilityMap }
+    }
+
+    const unwrapDice = (dice) => {
+        const unwrappedDice = []
+        let currentDie = 0
+
+        for (d of dice) {
+            unwrappedDice[currentDie] = []
+            for (let i = 1; i <= d; i++) {
+                unwrappedDice[currentDie].push(i)
+            }
+            currentDie += 1
+        }
+
+        return unwrappedDice;
+    }
+
+    const sumArray = (arr) => arr.reduce((a, b) => a + b);
+
+    const mapCounts = (total, nextVal) => {
+        if (total.has(nextVal)) {
+            const count = total.get(nextVal);
+            total.set(nextVal, count + 1)
+        } else {
+            total.set(nextVal, 1);
+        }
+
+        return total;
+    };
+
+    const getCombinations = (array) => {
+        return getCombinationsInner(0, [], array)
+    }
+
+    const getCombinationsInner = (column, indices, array) => {
+        let result = []
+        for (let i = 0; i < array[column].length; i++) {
+            const nextIndices = [...indices, array[column][i]]
+            if (column + 1 >= array.length) {
+                // Need to wrap it in an additional array so that flat will work.
+                // I'm sure there's a better way 🫠
+                result.push([nextIndices])
+            } else {
+                result.push(getCombinationsInner(column + 1, nextIndices, array))
+            }
+        }
+        return result.flat(1)
+    }
+
+    const getDice = () => {
+        let dice = []
+
+        for (const fc of $form.children) {
+            let die = 0
+            let count = 0
+            for (const fcc of fc.children) {
+                if (fcc.classList.contains('die')) {
+                    die = fcc.value
+                } else if (fcc.classList.contains('count')) {
+                    count = fcc.value
+                }
+            }
+
+            for (let i = 0; i < count; i++) {
+                dice.push(die);
+            }
+        }
+
+        return dice
+    }
+
+    // Run program
+    appendDie()
+    resetProbabilityTable()
+</script>
+
+<style>
+    .die, .count {
+        margin: var(--s-spacing);
+        padding: var(--s-spacing);
+        width: 50px;
+        height: 50px;
+        font-size: var(--s-text);
+        color: var(--c-text);
+        background: transparent;
+        border: none;
+    }
+</style>
