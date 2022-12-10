@@ -1,7 +1,7 @@
 // Set storage value
 const lightStorageValue = localStorage.getItem('lightTheme');
 if (lightStorageValue === null) {
-    localStorage.setItem('lightTheme', window.matchMedia('(prefers-color-scheme)').media !== 'not all')
+    localStorage.setItem('lightTheme', window.matchMedia('(prefers-color-scheme)').media === 'not all')
 }
 
 const switchLight = () => {
@@ -23,3 +23,6 @@ const switchLight = () => {
         r.style.setProperty('--c-backgroundseparator', '#1e1819')
     }
 }
+
+switchLight()
+switchLight()
