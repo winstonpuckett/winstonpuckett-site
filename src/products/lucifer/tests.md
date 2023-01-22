@@ -9,6 +9,7 @@ productUrl: /products/lucifer
 - [Getting Started](/products/lucifer/docs)
 - [Installation](/products/lucifer/installation)
 - [CLI Reference](/products/lucifer/cli)
+- [Source Code](https://github.com/winstonpucket/lucifer)
 
 # Test Syntax
 
