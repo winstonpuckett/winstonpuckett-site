@@ -18,6 +18,7 @@ layout: layout-product.njk
 - [Installation](/products/lucifer/installation)
 - [CLI Reference](/products/lucifer/cli)
 - [Test Syntax](/products/lucifer/tests)
+- [Source Code](https://github.com/winstonpucket/lucifer)
 
 # Lucifer
 
