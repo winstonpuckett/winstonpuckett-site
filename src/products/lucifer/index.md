@@ -30,9 +30,7 @@ Lucifer is a command line interface application which enables easy, maintainable
 
 ## Get up and running quickly
 
-Installation is incredibly simple and will be supported on all operating systems. Just run <code>cargo install lucifer-testing</code>. Head to the installation page [here](/products/lucifer/installation) for full instructions and options.
-
-In the future, this project will be directly integrated with common CI/CD tools like Github Actions and Jenkins for seemless CI/CD testing.
+Installation is incredibly simple and will be supported on all operating systems. If you already have [cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html) installed, just run <code>cargo install lucifer-testing</code>. Head to the installation page [here](/products/lucifer/installation) for full instructions and options.
 
 ## Easy test suite management
 

@@ -13,10 +13,6 @@ productUrl: /products/lucifer
 
 # CLI Reference
 
-Note: the CLI is subject to change in subsequent versions. For instance, currently if you specify more than one input directory, only the last directory will be honored. In the future, this may allow you to specify many suites.
-
-If you see any unconventional behavior, feel free to note it with the [issues tab](https://github.com/winstonpuckett/lucifer/issues) in GitHub.
-
 ## Flags
 
 ### Help

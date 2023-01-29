@@ -25,6 +25,7 @@ Prerequisites:
 - [cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 
 To install lucifer, simply run the command below:
+
 ```bash
 cargo install lucifer-testing
 ```
@@ -35,11 +36,9 @@ Then run the next command to see that lucifer was properly installed.
 lucifer --version
 ```
 
-If you're having trouble or would like to try a different method of instalation, [head to our installation guide](/products/lucifer/installation).
-
 ## Understanding Suites
 
-A suite is a set of features which should be run together. In practical terms, a suite is a single folder which contains one or more features.
+A suite is a set of features which should be run together. In literal terms, a suite is a single folder which contains one or more features.
 
 By default, lucifer assumes that your current working directory is the suite. This is called the "input directory" and can be changed with the [--input-directory flag](/products/lucifer/cli).
 
@@ -49,7 +48,7 @@ In your chosen directory, create a folder called "suite". This will serve as the
 
 ## Understanding Features
 
-A feature is a set of tests within a suite. You can group tests together in whatever way makes sense for the project. The original developer believes that the concept of a feature aligns with one specific use case the cli exposes.
+A feature is a set of tests within a suite. You can group tests together in whatever way makes sense for the project. The concept of a feature aligns with one specific use case the cli exposes.
 
 With lucifer, features are represented as single yaml files. The name of the file is the name of the feature.
 
@@ -67,7 +66,7 @@ This defines what cli we are testing in each test (We'll be testing lucifer itse
 
 ## Understanding Tests
 
-A test is a list of arguments to pass to the command and a list of expectations which should be met as a result of its run. These tests happen to be run in order, synchronously. However, there may be work in the future which changes this behavior, so tests should always be written so that they can be run regardless of order.
+A test is a list of arguments to pass to the command and a list of expectations which should be met as a result of its run. These tests happen to be run in order, synchronously. However, tests should always be written so that they can be run regardless of order. Without this independence, managing a suite can become cumbersome.
 
 ### Activity - Add tests to your feature
 
@@ -75,17 +74,17 @@ Underneath your command, enter this array:
 
 ```yaml
 tests:
-  - name: --silent gives the correct output
+  - name: --no-file suppresses file generation
     description: >
-      Given the silent flag
+      Given the "no file" flag
       When lucifer runs
-      Then it should return nothing
+      Then no file should be produced
     expectations:
       exitCode: 0
       performance: 10
-      output: ""
+      noFile: ./results.json
     args:
-      - --silent
+      - --no-file
 ```
 
 The name and description here are inconsequential. You will use the name to find the test definition if it ever fails. 
@@ -97,28 +96,27 @@ The args array defines what should be passed to the command. You can pass intege
 Now that we have walked through what each major section means, let's add a second test below the one we have.
 
 ```yaml
-  - name: --no-file produces no file
+  - name: --silent gives the correct output
     description: >
-      Given the "no file" flag
+      Given the silent flag
       When lucifer runs
-      Then no file should be produced
+      Then it should output nothing
     expectations:
       exitCode: 0
       performance: 10
-      noFile: ./output/should_not_exist_long_form/results.json
+      output: ""
     args:
       - --no-file
-      - --output-directory
-      - ./output/should_not_exist_long_form
+      - --silent
 ```
-
-Now that we have a suite, run lucifer and see the results!
 
 Note: You should run lucifer OUTSIDE the folder we're testing. Otherwise it will go into an infinite loop. The command below will work only if you're in the parent directory.
 
 ```bash
 lucifer --input-directory ./suite
 ```
+
+**Now that we have a suite, run lucifer and see the results!**
 
 lucifer should output something resembling the following:
 
@@ -128,9 +126,9 @@ Executing tests for './suite'
 
 🐲 Feature: flags.yaml
 
-  🎉 '--silent gives the correct output' succeeded in 2ms
-
   🎉 '--no-file produces no file' succeeded in 2ms
+
+  🎉 '--silent gives the correct output' succeeded in 2ms
 ```
 
 In addition, you should notice a new file called results.json in your current working directory. This file gives us the same information as above, but in a way which is easily readable by a computer. The consideration of the computer is also why json is chosen over yaml. We write our tests in yaml so that humans can read them easily. We output json to be interpreted by downstream systems.
@@ -138,10 +136,8 @@ In addition, you should notice a new file called results.json in your current wo
 JSON result from the above run:
 
 ```json
-{"testResults":[{"succeeded":true,"milliseconds":2,"failures":[]},{"succeeded":true,"milliseconds":2,"failures":[]}]}
+{"testResults":[{"feature":"flags.yaml","test":"--no-file suppresses file generation","succeeded":true,"milliseconds":5,"standardOut":"\n🐉 LUCIFER 🐉\nExecuting tests for '.'\n","standardError":"","exitCode":0,"failures":[]},{"feature":"flags.yaml","test":"--silent gives the correct output","succeeded":true,"milliseconds":5,"standardOut":"","standardError":"","exitCode":0,"failures":[]}]}
 ```
-
-Note: In the future, the json above will include the test name and associated feature. Lucifer is still in alpha, so forgive me for ommiting that very necessary piece of information.
 
 Let's see what happens when we create an unmet expectation in our tests. In the "--silent gives the correct output test, insert "any text" into the output expectation:
 
@@ -167,7 +163,11 @@ Executing tests for './suite'
   🎉 '--no-file produces no file' succeeded in 4ms
 ```
 
-Notice that the text now shows red, tells you how to reproduce the error, and gives you information on which expectations failed and how.
+Notice that the text now shows red, tells you how to reproduce the error, and gives you information on which expectations failed and how. Similar information is written to results.json
+
+```json
+{"testResults":[{"feature":"flags.yaml","test":"--no-file produces no file","succeeded":false,"milliseconds":5,"standardOut":"\n🐉 LUCIFER 🐉\nExecuting tests for '.'\n","standardError":"","exitCode":0,"failures":[{"type":"fileExists","expectation":"","actual":"./results.json"}]},{"feature":"flags.yaml","test":"--silent gives the correct output","succeeded":true,"milliseconds":5,"standardOut":"","standardError":"","exitCode":0,"failures":[]}]}
+```
 
 ## Full file
 
@@ -175,18 +175,7 @@ suite/flags.yaml
 ```yaml
 command: lucifer
 tests:
-  - name: --silent gives the correct output
-    description: >
-      Given the silent flag
-      When lucifer runs
-      Then it should return nothing
-    expectations:
-      exitCode: 0
-      performance: 10
-      output: ""
-    args:
-      - --silent
-  - name: --no-file produces no file
+  - name: --no-file suppresses file generation
     description: >
       Given the "no file" flag
       When lucifer runs
@@ -194,11 +183,21 @@ tests:
     expectations:
       exitCode: 0
       performance: 10
-      noFile: ./output/should_not_exist_long_form/results.json
+      noFile: ./results.json
     args:
       - --no-file
-      - --output-directory
-      - ./output/should_not_exist_long_form
+  - name: --silent gives the correct output
+    description: >
+      Given the silent flag
+      When lucifer runs
+      Then it should output nothing
+    expectations:
+      exitCode: 0
+      performance: 10
+      output: ""
+    args:
+      - --no-file
+      - --silent
 ```
 
 ## Keep learning
