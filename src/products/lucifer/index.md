@@ -9,7 +9,6 @@ productTags:
     - Testing
     - Executable
     - Automation
-    - Alpha
 
 layout: layout-product.njk
 --- 
