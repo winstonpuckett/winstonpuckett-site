@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="same-origin">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0707">
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#edebeb">
+    {# <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0707">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#edebeb"> #}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Better code is more better.">
     <meta name="keywords" content="winston puckett, programming, computer science, open source">
@@ -34,11 +34,9 @@
 <body>
     {% set siteCss %}{% include 'site.css' %}{% endset %}
     <style>{{ siteCss | cssMinifier | safe }}</style>
-    <script defer src="/_assets/lightswitch.js"></script>
 
     <nav id="nav">
         <a class="nav__title" href="/">🦉 Winston Puckett</a>
-        <button class="nav__lightswitch" onclick="switchLight()">🌓</button>
     </nav>
 
     <main>

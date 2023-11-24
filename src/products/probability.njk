@@ -44,8 +44,8 @@ layout: layout-product.njk
     const appendDie = () => {
         const $fieldSet = $.create('fieldset')
 
-        const die = createInput({ label: 'Die', cls: 'die', dft: 6, onChange: resetProbabilityTable })
-        const count = createInput({ label: 'x', cls: 'count', min: 1, dft: 3, onChange: resetProbabilityTable })
+        const die = createInput({ label: 'Number of dice', cls: 'die', dft: 6, onChange: resetProbabilityTable })
+        const count = createInput({ label: 'Dice sides', cls: 'count', min: 1, dft: 3, onChange: resetProbabilityTable })
 
         $fieldSet.appendChild(die.label)
         $fieldSet.appendChild(die.input)

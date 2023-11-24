@@ -1,29 +1,21 @@
 :root {
-    --c-text: #edebeb;
-    --c-textSeparator: #a8b2c0;
-    --c-background: #0d0707;
-    --c-background-gradient: linear-gradient(to bottom, #0d0707, #090505);
-    --c-backgroundseparator: #1e1819;
-    /* --c-cta1: #ead0a9;
-    --c-cta2: #a8852c;
-    --c-cta3: #795615;
-    --c-cta: linear-gradient(to bottom right, var(--c-cta1), var(--c-cta2), var(--c-cta3)); */
+    --c-text: #cad3f5;
+    --c-background: #24273a;
+    --c-backgroundseparator: #5b6078;
     --s-spacing: 15px;
     --s-text-xsmall: 0.75rem;
-    --s-text-small: 1rem;
+    --s-text-small: 1.25rem;
     --s-text: 1.5rem;
     --s-text-large: 2rem;
-    --f-heading: 'Open Sans';
-    --f-writing: Montserrat;
+    --f-heading: helvetica;
+    --f-writing: arial;
 }
 
 @media (prefers-color-scheme: light) {
     :root {
-        --c-text: #0d0707;
-        --c-textSeparator: #1e1819;
-        --c-background: #edebeb;
-        --c-backgroundseparator: #a8b2c0;
-        --c-background-gradient: linear-gradient(to bottom, #edebeb, #f1eded);
+        --c-text: #4c4f69;
+        --c-background: #eff1f5;
+        --c-backgroundseparator: #acb0be;
     }
 }
 
@@ -35,7 +27,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--c-background);
-    background-image: var(--c-background-gradient);
     color: var(--c-text);
     min-height: 100%;
 
@@ -85,12 +76,6 @@ a {
     color: var(--c-text);
     text-decoration: none;
     font-family: var(--f-heading);
-}
-
-.nav__lightswitch {
-    font-size: var(--s-text-large);
-    border: none;
-    background: transparent;
 }
 
 .products-list__wrapper {
