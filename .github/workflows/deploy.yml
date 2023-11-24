@@ -20,10 +20,6 @@ jobs:
         run: npm i
       - name: build
         run: npx @11ty/eleventy
-        env:
-          DEV_API_KEY: ${{ secrets.DEV_API_KEY }}
-          GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
-          PAYMENT_POINTER: ${{ secrets.PAYMENT_POINTER }}
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

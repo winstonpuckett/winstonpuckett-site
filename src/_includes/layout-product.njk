@@ -33,7 +33,7 @@
 
 <body>
     {% set siteCss %}{% include 'site.css' %}{% endset %}
-    <style>{{ siteCss | cssmin | safe }}</style>
+    <style>{{ siteCss | cssMinifier | safe }}</style>
     <style>main{max-width:900px;margin:auto;}</style>
     <script defer src="/_assets/lightswitch.js"></script>
 
