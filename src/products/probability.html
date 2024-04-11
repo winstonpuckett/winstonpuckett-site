@@ -14,7 +14,11 @@ layout: layout-product.njk
 ---
 
 
-<form></form>
+<form style="width:600px">
+    <label>Die Count: <input type="number" id="dice" value="2" onchange="resetProbabilityTable()"></label>
+    <label>Sides per die:<input type="number" id="sides" value="6" onchange="resetProbabilityTable()"></label>
+</form>
+
 <table>
     <thead>
         <tr>
@@ -174,31 +178,42 @@ layout: layout-product.njk
     const getDice = () => {
         let dice = []
 
-        for (const fc of $form.children) {
-            let die = 0
-            let count = 0
-            for (const fcc of fc.children) {
-                if (fcc.classList.contains('die')) {
-                    die = fcc.value
-                } else if (fcc.classList.contains('count')) {
-                    count = fcc.value
-                }
-            }
-
-            for (let i = 0; i < count; i++) {
-                dice.push(die);
-            }
+        let dieCount = parseInt($.get('#dice').value)
+        for (let i = 0; i < dieCount; i++) {
+            dice.push(parseInt($.get('#sides').value))
         }
+
+        // for (const fc of $form.children) {
+        //     let die = 0
+        //     let count = 0
+        //     // if (fc.classList.contains('die')) {
+        //     //     die = fc.value
+        //     // } else if (fc.classList.contains('count')) {
+        //     //     count = fc.value
+        //     // }
+        //     for (const fcc of fc.children) {
+        //         if (fcc.classList.contains('die')) {
+        //             die = fcc.value
+        //         } else if (fcc.classList.contains('count')) {
+        //             count = fcc.value
+        //         }
+        //     }
+
+        //     for (let i = 0; i < count; i++) {
+        //         dice.push(die);
+        //     }
+        // }
+
 
         return dice
     }
 
     // Run program
-    appendDie()
-    resetProbabilityTable()
+    // appendDie()
+    window.onload = () => resetProbabilityTable()
 </script>
 
-<style>
+<!-- <style>
     .die, .count {
         margin: var(--s-spacing);
         padding: var(--s-spacing);
@@ -209,4 +224,4 @@ layout: layout-product.njk
         background: transparent;
         border: none;
     }
-</style>
+</style> -->

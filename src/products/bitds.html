@@ -1,0 +1,168 @@
+---
+tags: product
+date: 2024-04-10
+
+icon: 👾
+title: BitDS
+tagline: A design system for fun people.
+productTags:
+- Design System
+- CSS
+- HTML
+
+layout: layout-product.njk
+---
+
+<h1>Bit DS</h1>
+<p>
+    Bit DS is a design system named for its 1-bit color palette. It prioritizes user engagement by implementing absolute
+    accessibility standards and best practices for design.
+</p>
+
+<p>
+    Implementation is done through a raw css file, which makes it useable within any web project.
+</p>
+
+<h1>Colors</h1>
+<p>
+    Inspired by 1-bit pixel art, we restrict ourselves to two colors. No shadows, no gradients, just shape and
+    space.
+</p>
+<p>
+    Any two colors may be used as long as the contrast ratio meets <a
+        href="https://webaim.org/resources/contrastchecker/" rel="noreferrer" target="_blank">WCAG AAA
+        standards</a> for normal text.
+</p>
+<h2>Try out some colors:</h2>
+<div class="horizontal">
+    <div class="card not-clickable">
+        <label for="0" class="title">0</label>
+        <input id="0" class="image" style="height: 7rem;padding:0;" type="color"
+            onchange="(()=>{document.documentElement.style.setProperty('--0', document.getElementById('0').value)})()">
+        <p class="description">The "dark" color which styles the text and all foreground elements.</p>
+    </div>
+    <div class="card not-clickable">
+        <label for="1" class="title">1</label>
+        <input id="1" class="image" style="height: 7rem;padding:0;" value="#efefef" type="color"
+            onchange="(()=>{document.documentElement.style.setProperty('--1', document.getElementById('1').value)})()">
+        <p class="description">The "light" color which styles background elements and borders.</p>
+    </div>
+</div>
+
+<h1>Typography</h1>
+
+<h2>Font choice</h2>
+<p>Arial is the font for both headers and body text. There are two reasons for this.</p>
+<ol>
+    <li>
+        <p>Arial is easier for people with dyslexia to read <a
+                href="https://www.bdadyslexia.org.uk/advice/employers/creating-a-dyslexia-friendly-workplace/dyslexia-friendly-style-guide#:~:text=Some%20dyslexic%20readers%20may%20request,excessive%20it%20can%20reduce%20readability.">(source)</a>.
+        </p>
+    </li>
+    <li>
+        <p>The font is web safe, which will slightly increase website performance.</p>
+    </li>
+</ol>
+<p>
+    Any other font is acceptable as long as it's applied consistently to all headers and/or all body text
+    throughout the site and it meets at least the first criteria above.
+</p>
+
+<h2>Font size</h2>
+<p>
+    The base font size is 16px for all text. We scale in increments of the base grid size (8px) to get header
+    sizes. h4 is the lowest header size available, starting at 24px.
+</p>
+
+<h2>Font spacing</h2>
+<ul>
+    <li>
+        <p>Currently, letter spacing is set at default for Arial. This may be revised in future versions</p>
+    </li>
+    <li>
+        <p>Line height is 1.5 * the font size</p>
+    </li>
+    <li>
+        <p>Margin top for headers is 1 * the font size</p>
+    </li>
+    <li>
+        <p>Margin bottom for headers is 0.5 * the font size</p>
+    </li>
+    <li>
+        <p>Margins top and bottom for body is 1 * the font size</p>
+    </li>
+    <li>
+        <p>No paragraph should be wider than 600px.</p>
+    </li>
+</ul>
+
+<h2>Inline links</h2>
+<p>As per standards from the dyslexia-friendly-style-guide, links and other text are not underlined. Instead,
+    like buttons, they are bold, have 1-unit margins, and are slightly larger at 20px.</p>
+
+<p>Most of these choices are inspired by the <a
+        href="https://www.bdadyslexia.org.uk/advice/employers/creating-a-dyslexia-friendly-workplace/dyslexia-friendly-style-guide#:~:text=Some%20dyslexic%20readers%20may%20request,excessive%20it%20can%20reduce%20readability.">British
+        Dyslexia Association</a>.</p>
+
+<h1>Buttons</h1>
+<ul>
+    <li>
+        <p>Bold text</p>
+    </li>
+    <li>
+        <p>20 units wide</p>
+    </li>
+    <li>
+        <p>4 units tall</p>
+    </li>
+    <li>
+        <p>Are square</p>
+    </li>
+    <li>
+        <p>Have an inset border of 1/2 unit</p>
+    </li>
+    <li>
+        <p>Are filled with inverted font color if primary</p>
+    </li>
+</ul>
+<button class="primary">Primary button</button>
+<button>Regular button</button>
+
+<h1>Cards</h1>
+
+<p>Cards model physical playing cards.</p>
+
+<ul>
+    <li>Have an aspect ratio of 5 / 7 to match a playing card</li>
+    <li>Have a border of 1/2 unit</li>
+    <li>Have a space for a title, an image, and a description</li>
+    <li>Have a border radius of 2 units</li>
+</ul>
+
+<div class="container-left">
+    <article class="card">
+        <p class="title">Card Title</p>
+        <img class="image" src="https://via.placeholder.com/160x100" alt="Sample image">
+        <p class="description">I'm the sample description. Don't underestimate me.</p>
+    </article>
+</div>
+
+<h1>Input elements</h1>
+
+<p>Our philosophy is to adopt the built in tools for forms in HTML5. Because of this, form elements are largely unstyled.
+    The exception is that we utilize the same square border as buttons to indicate that these are clickable.</p>
+
+<form action="">
+    <label>
+        String
+        <input type="text">
+    </label>
+    <label>
+        Date
+        <input type="date">
+    </label>
+    <label>
+        Number
+        <input type="number">
+    </label>
+</form>

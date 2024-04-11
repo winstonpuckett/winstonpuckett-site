@@ -27,26 +27,30 @@
       gtag('config', 'UA-178745018-1');
     </script>
 
+    <link rel="stylesheet" href="/_assets/bitds.css">
+
     {# TODO https://developers.google.com/search/docs/crawling-indexing/special-tags #}
     {# <meta name="google-site-verification" content="+nxGUDJ4QpAZ5l9Bsjdi102tLVC21AIh5d1Nl23908vVuFHs34="> #}
 </head>
 
 <body>
-    {% set siteCss %}{% include 'site.css' %}{% endset %}
-    <style>{{ siteCss | cssMinifier | safe }}</style>
+    {# {% set siteCss %}{% include 'site.css' %}{% endset %}
+    <style>{{ siteCss | cssMinifier | safe }}</style> #}
 
-    <nav id="nav">
-        <a class="nav__title" href="/">🦉 Winston Puckett</a>
+    <header>
+    <nav>
+        <a href="/">Winston Puckett</a>
+        <p>I make cool stuff and give it away</p>
     </nav>
+    </header>
 
-    <main>
+    <main class="centered">
         {{ content | safe }}
     </main>
     <footer>
         <span>From Winston Puckett with love ♥️</span> |
         <a href="https://github.com/winstonpuckett/winstonpuckett-site/blob/main/LICENSE">License</a> |
-        <a href="https://github.com/winstonpuckett/winstonpuckett-site">Source Code</a> |
-        <a href="https://github.com/catppuccin/catppuccin">Color Palette</a>
+        <a href="https://github.com/winstonpuckett/winstonpuckett-site">Source Code</a>
     </footer>
 </body>
 

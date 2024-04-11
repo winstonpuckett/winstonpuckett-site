@@ -26,29 +26,35 @@
 
       gtag('config', 'UA-178745018-1');
     </script>
+    <link rel="stylesheet" href="/_assets/bitds.css">
 
     {# TODO https://developers.google.com/search/docs/crawling-indexing/special-tags #}
     {# <meta name="google-site-verification" content="+nxGUDJ4QpAZ5l9Bsjdi102tLVC21AIh5d1Nl23908vVuFHs34="> #}
 </head>
 
 <body>
-    {% set siteCss %}{% include 'site.css' %}{% endset %}
+    {# {% set siteCss %}{% include 'site.css' %}{% endset %}
     <style>{{ siteCss | cssMinifier | safe }}</style>
-    <style>main{max-width:900px;margin:auto;}</style>
+    <style>main{max-width:900px;margin:auto;}</style> #}
 
+    <header>
     <nav id="nav">
-        <span class="nav__breadcrumbs"><a class="nav__title" href="/">🦉</a><span class=nav__title>›</span><a class="nav__title" href="{{ productUrl or page.url }}">{{ icon | safe }}</a></span>
+        <span>
+            <a href="/">Winston Puckett</a>
+            <span class=nav__title>›</span>
+            <a href="{{ productUrl or page.url }}">{{ title | safe }}</a>
+        </span>
     </nav>
+    </header>
 
-    <main>
+    <main class="centered">
         {{ content | safe }}
     </main>
 
     <footer>
         <span>From Winston Puckett with love ♥️</span> |
         <a href="https://github.com/winstonpuckett/winstonpuckett-site/blob/main/LICENSE">License</a> |
-        <a href="https://github.com/winstonpuckett/winstonpuckett-site">Source Code</a> |
-        <a href="https://github.com/catppuccin/catppuccin">Color Palette</a>
+        <a href="https://github.com/winstonpuckett/winstonpuckett-site">Source Code</a>
     </footer>
 </body>
 

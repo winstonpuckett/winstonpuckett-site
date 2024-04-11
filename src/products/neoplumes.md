@@ -4,7 +4,7 @@ date: 2022-10-02
 
 icon: 🎧
 title: Neoplumes
-tagline: I also write music.
+tagline: I also write music if you'd like to listen.
 productTags:
     - Music
 

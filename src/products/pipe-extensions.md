@@ -2,7 +2,7 @@
 tags: product
 date: 2021-05-11
 
-icon: <svg viewBox="0 0 34 34" height="1.25em" width="1.25em">
+icon: <svg viewBox="0 0 34 34" height="80%" width="80%"style="vertical-align:middle;">
         <defs id="defs2">
             <linearGradient id="linearGradient886" inkscape:collect="always">
                 <stop id="stop882" offset="0" style="stop-color:#63f8ff;stop-opacity:1" />
@@ -17,7 +17,7 @@ icon: <svg viewBox="0 0 34 34" height="1.25em" width="1.25em">
         </g>
     </svg>
 title: Pipe Extensions
-tagline: Because the forward pipe operator (|>) from F# seems to be far off. 
+tagline: A forward pipe available for C#. 
 productTags:
     - Library
     - C#

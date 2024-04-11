@@ -1,16 +1,10 @@
 {% macro productCards(products) %}
-    <div class="products-list__wrapper">
+    <div class="horizontal">
     {%- for product in products | reverse -%}
-        <a class="card__wrapper" href="{{ product.url }}">
-            <p class="card__icon">{{ product.data.icon | safe }}</p>
-            <p class="card__title">{{ product.data.title }}</p>
-            <p class="card__description">{{ product.data.tagline }}</p>
-            <div class="card__tags__wrapper">
-                <p class="card__tags__title">Tags: </p>
-                {%- for tag in product.data.productTags -%}
-                    <p class="card__tags__chip">{{ tag }}</p>
-                {%- endfor -%}
-            </div>
+        <a class="card" href="{{ product.url }}">
+            <p class="title">{{ product.data.title }}</p>
+            <p class="image" style="height:5rem;font-size: 3rem;text-align: center;">{{ product.data.icon | safe }}</p>
+            <p class="description">{{ product.data.tagline }}</p>
         </a>
     {%- endfor -%}
     </div>

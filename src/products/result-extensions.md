@@ -2,7 +2,7 @@
 tags: product
 date: 2021-06-30
 
-icon: <svg width="1.25em" height="1.25em" viewBox="0 0 32 32">
+icon: <svg width="80%"style="vertical-align:middle;" height="80%" viewBox="0 0 32 32">
         <defs>
             <linearGradient id="linearGradient886">
                 <stop style="stop-color:#63f8ff;stop-opacity:1" offset="0"></stop>
