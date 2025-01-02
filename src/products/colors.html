@@ -1,0 +1,299 @@
+<form id="paletteGenerator" name="paletteGenerator">
+    <canvas id="paletteCanvas" width="360" height="50"></canvas>
+
+    <label for="paletteType">Palette Type</label>
+    <select id="paletteType" onchange="updatePalette()">
+        <option value="single">Single</option>
+        <option value="complementary">Complementary</option>
+        <option value="splitComplementary">Split Complementary</option>
+        <option value="triad" selected>Triad</option>
+        <option value="square">Square</option>
+        <option value="analogous">Analogous</option>
+        <option value="rotations">Rotation Count</option>
+    </select>
+    <div id="rotationsWrapper" style="display:none;">
+        <label for="rotations">Rotations</label><input id="rotations" oninput="updatePalette()" type="range" min="1"
+            max="12" value="3" />
+    </div>
+    <label for="startingHue">Hue</label><input id="startingHue" oninput="updatePalette()" type="range" min="0" max="360"
+        value="185" />
+    <label for="shift">Hue Shift</label><input id="shift" oninput="updatePalette()" type="range" min="0" max="30"
+        value="10" />
+    <label for="dynamicRange">Shades / Tints</label><input id="dynamicRange" oninput="updatePalette()" type="range"
+        min="2" max="16" step="2" value="4" />
+
+    <label for="saturation">Saturation</label><input id="saturation" oninput="updatePalette()" type="range" min="1"
+        max="100" value="40" />
+    <label for="saturation">Saturation Shift</label><input id="saturationShift" oninput="updatePalette()" type="range"
+        min="1" max="100" value="50" />
+    <div id="huePreview"></div>
+</form>
+
+<style>
+    #paletteGenerator {
+        display: flex;
+        flex-direction: column;
+        max-width: 60ch;
+        margin: auto;
+    }
+
+    #paletteCanvas {
+        margin: auto;
+        /* width: 90%;
+        max-height: 80vh; */
+        width: 60vh;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: radial-gradient(white 0%, transparent 75%),
+            conic-gradient(hsl(0 100% 50%),
+                hsl(45 100% 50%),
+                hsl(90 100% 50%),
+                hsl(135 100% 50%),
+                hsl(180 100% 50%),
+                hsl(225 100% 50%),
+                hsl(270 100% 50%),
+                hsl(315 100% 50%),
+                hsl(360 100% 50%));
+
+        background-blend-mode: screen;
+    }
+</style>
+
+<script>
+    // the current color palette
+    let palette = {}
+
+    // main
+    function updatePalette() {
+        let rotations = parseInt(document.querySelector('#rotations').value)
+        let paletteType = document.querySelector("#paletteType").value
+        switch (paletteType) {
+            case "single":
+                hideRotations()
+                rotations = 1
+                palette = getColorPaletteFromRotations({
+                    startingHue: parseInt(document.querySelector('#startingHue').value),
+                    hueShift: parseFloat(document.querySelector('#shift').value) / 100,
+                    saturation: parseInt(document.querySelector('#saturation').value),
+                    saturationShift: parseInt(document.querySelector('#saturationShift').value) / 100,
+                    dynamicRange: parseInt(document.querySelector('#dynamicRange').value),
+                    rotations: rotations
+                })
+                break;
+            case "complementary":
+                hideRotations()
+                rotations = 2
+                palette = getColorPaletteFromRotations({
+                    startingHue: parseInt(document.querySelector('#startingHue').value),
+                    hueShift: parseFloat(document.querySelector('#shift').value) / 100,
+                    saturation: parseInt(document.querySelector('#saturation').value),
+                    saturationShift: parseInt(document.querySelector('#saturationShift').value) / 100,
+                    dynamicRange: parseInt(document.querySelector('#dynamicRange').value),
+                    rotations: rotations
+                })
+                break
+            case "triad":
+                hideRotations()
+                rotations = 3
+                palette = getColorPaletteFromRotations({
+                    startingHue: parseInt(document.querySelector('#startingHue').value),
+                    hueShift: parseFloat(document.querySelector('#shift').value) / 100,
+                    saturation: parseInt(document.querySelector('#saturation').value),
+                    saturationShift: parseInt(document.querySelector('#saturationShift').value) / 100,
+                    dynamicRange: parseInt(document.querySelector('#dynamicRange').value),
+                    rotations: rotations
+                })
+                break
+            case "square":
+                hideRotations()
+                rotations = 4
+                palette = getColorPaletteFromRotations({
+                    startingHue: parseInt(document.querySelector('#startingHue').value),
+                    hueShift: parseFloat(document.querySelector('#shift').value) / 100,
+                    saturation: parseInt(document.querySelector('#saturation').value),
+                    saturationShift: parseInt(document.querySelector('#saturationShift').value) / 100,
+                    dynamicRange: parseInt(document.querySelector('#dynamicRange').value),
+                    rotations: rotations
+                })
+                break
+            case "splitComplementary":
+                hideRotations()
+                palette = getColorPaletteFromRotations({
+                    startingHue: parseInt(document.querySelector('#startingHue').value),
+                    hueShift: parseFloat(document.querySelector('#shift').value) / 100,
+                    saturation: parseInt(document.querySelector('#saturation').value),
+                    saturationShift: parseInt(document.querySelector('#saturationShift').value) / 100,
+                    dynamicRange: parseInt(document.querySelector('#dynamicRange').value),
+                    rotations: rotations
+                })
+                break
+            case "rotations":
+                showRotations()
+                palette = getColorPaletteFromRotations({
+                    startingHue: parseInt(document.querySelector('#startingHue').value),
+                    hueShift: parseFloat(document.querySelector('#shift').value) / 100,
+                    saturation: parseInt(document.querySelector('#saturation').value),
+                    saturationShift: parseInt(document.querySelector('#saturationShift').value) / 100,
+                    dynamicRange: parseInt(document.querySelector('#dynamicRange').value),
+                    rotations: rotations
+                })
+                break
+            default:
+                break;
+        }
+
+        createButtonsAndUpdateCssVariables(palette)
+        updateCanvas(palette)
+    }
+    window.onload = updatePalette()
+
+    // color calculations
+    function getColorPaletteFromRotations({ startingHue, hueShift, saturation, saturationShift, dynamicRange, rotations }) {
+        let range = []
+
+        let rotationStop = Math.floor(360 / rotations)
+        for (let i = 0; i < rotations; i++) {
+            let hue = (startingHue + (i * rotationStop))
+            range[i] = getColorRange({ dynamicRange, hueShift, startingHue: hue, saturation, saturationShift })
+        }
+
+        return range
+    }
+    function getSplitComplementary({ startingHue, hueShift, saturation, saturationShift, dynamicRange, rotations }) {
+        let range = []
+
+        let rotationStop = Math.floor(360 / rotations)
+        for (let i = 0; i < rotations; i++) {
+            let hue = (startingHue + (i * rotationStop))
+            range[i] = getColorRange({ dynamicRange, hueShift, startingHue: hue, saturation, saturationShift })
+        }
+
+        return range
+    }
+    function getColorRange({ dynamicRange, hueShift, startingHue, saturation, saturationShift, rotations }) {
+        let yellowHue = 60
+        let purpleHue = 300
+        let stops = []
+
+        let brightnessStop = 100 / (dynamicRange + 1)
+        for (let i = 0; i < dynamicRange; i++) {
+            let brightness = brightnessStop * (i + 1)
+            let hue = brightness === 50 ? startingHue
+                : brightness >= 50 ? Math.round(lerpTowardsCirclePoint(startingHue, yellowHue, (hueShift * (i - (dynamicRange / 2)))))
+                    : Math.round(lerpTowardsCirclePoint(startingHue, purpleHue, Math.abs(hueShift * (i - (dynamicRange / 2)))))
+            let s = saturation + (saturationShift * -1 * i)
+            stops[i] = [hue, s, brightness]
+        }
+
+        return stops
+    }
+
+    // update dom
+    function createButtonsAndUpdateCssVariables(palette) {
+        document.querySelector('#huePreview').innerText = ''
+
+        let row = 0
+        for (let range of palette) {
+            let root = document.createElement('div')
+            let column = 0
+
+            let midColumn = Math.floor(range.length / 2)
+            for (let stop of range) {
+                let variableName = `--c-${row}-${column}`
+
+                document.documentElement.style.setProperty(variableName, `hsl(${stop[0]}, ${stop[1]}%, ${stop[2]}%)`)
+                let child = document.createElement('div')
+                child.style = `
+                    background: var(${variableName}); 
+                    width: 100%;
+                    aspect-ratio: 1 / 1;
+                `
+
+                root.appendChild(child)
+                column += 1
+            }
+            root.style = `
+                display: flex;
+                width: 100%;
+            `
+
+            document.querySelector('#huePreview').appendChild(root);
+            row += 1
+        }
+    }
+
+    function updateCanvas(palette) {
+        const paletteCanvas = document.getElementById('paletteCanvas')
+        paletteCanvas.width = paletteCanvas.clientWidth - 0.5
+        paletteCanvas.height = paletteCanvas.clientHeight - 0.5
+
+        const ctx = paletteCanvas.getContext("2d")
+        // ctx.translate(0.5, 0.5);
+        ctx.clearRect(0, 0, paletteCanvas.width, paletteCanvas.height)
+
+        const pointSize = paletteCanvas.height * 0.02
+        const pointMidpoint = pointSize / 2
+        const canvasCenter = paletteCanvas.width / 2
+
+        // Draw points
+        for (range of palette) {
+            for (let colorIndex = 0; colorIndex < range.length; colorIndex++) {
+                let color = range[colorIndex]
+
+                let [hue, saturation, brightness] = color
+                // if (saturation === 0) {
+                //     continue;
+                // }
+
+                let x = (hue) % 360
+                {
+                    // Wrap around canvas
+                    // if (x < - pointMidpoint) x += 360
+
+                    // Normalize
+                    // x = (x / 360) * paletteCanvas.width;
+                }
+
+                let y = brightness - (pointMidpoint / 2)
+                {
+                    // Normalize
+                    y = (y / 100) * canvasCenter
+                }
+
+                // console.log(x)
+                ctx.save()
+                ctx.translate(canvasCenter, canvasCenter)
+                ctx.rotate(x * Math.PI / 180)
+                // ctx.translate(canvasCenter, y)
+                ctx.translate(-canvasCenter, -canvasCenter)
+                ctx.fillStyle = `hsl(${hue},${saturation}%,${brightness}%)`
+                ctx.beginPath()
+                // ctx.arc(0,0, pointSize, 0, 360)
+                ctx.arc(canvasCenter, y, pointSize, 0, 360)
+                ctx.fill()
+                ctx.strokeStyle = `black`
+                ctx.lineWidth = 2
+                ctx.stroke()
+                ctx.restore()
+            }
+        }
+    }
+    function hideRotations() { document.querySelector('#rotationsWrapper').style = 'display:none;' }
+    function showRotations() { document.querySelector('#rotationsWrapper').style = 'display:flex;flex-direction:column;' }
+
+    // Math
+
+    function lerp(current, target, percent) {
+        return current * (1 - percent) + target * percent;
+    }
+
+    function lerpTowardsCirclePoint(current, point, percent) {
+        if (current > point + 180) {
+            return lerp(current, point + 360, percent)
+        } else if (current < point - 180) {
+            return lerp(current, point - 360, percent)
+        } else {
+            return lerp(current, point, percent)
+        }
+    }
+</script>
